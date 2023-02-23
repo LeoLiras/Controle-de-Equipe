@@ -2,6 +2,7 @@ package program;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.Scanner;
@@ -10,7 +11,7 @@ public class Functions {
 	
 	static Scanner input = new Scanner(System.in);
 	
-	static void menu() throws InterruptedException {
+	public static void menu() throws InterruptedException {
 		
 		System.out.println("\n========== Bem Vindo(a) =========");
 		System.out.println("========= Controle de Equipe =========\n");
@@ -45,8 +46,8 @@ public class Functions {
 		}
 	}
 	
-	static Connection conectarDatabase() {
-		String CLASSE_DRIVER = "com.mysql.jdbc.Driver";
+	public static Connection conectarDatabase() {
+		String CLASSE_DRIVER = "com.mysql.cj.jdbc.Driver";
 		String USUARIO = "estudos";
 		String SENHA = "root123";
 		String URL_SERVIDOR = "jdbc:mysql://localhost:3306/colaboradores?useSSL=false";
@@ -76,11 +77,11 @@ public class Functions {
 		}
 	}
 	
-	static void listarColaboradores() {
+	public static void listarColaboradores() {
 		
 	}
 	
-	static void cadastrarColaboradores() throws InterruptedException {
+	public static void cadastrarColaboradores() throws InterruptedException {
 		input.nextLine();
 		
 		System.out.println("\n ========= Cadastro de Colaborador =========");
@@ -98,23 +99,51 @@ public class Functions {
 		System.out.println("\nInsira a data de nascimento do Colaborador: ");
 		String data = input.nextLine();
 		Date data_nascimento = Utils.stringToDate(data);
-		System.out.println("\nInsira o E-mail do Colaborador: ");
-		String email = input.nextLine();
 		System.out.println("\nInsira a idade do Colaborador: ");
 		int idade = input.nextInt();
-		
-		
-		
+		input.nextLine();
+		Date data_cadastro = new Date();
+		System.out.println("\nInsira o E-mail do Colaborador: ");
+		String email = input.nextLine();
+	
 		Membros colaborador = new Membros(nome, rg, cpf, cargo, endereco, data_nascimento, email, idade);
 		
-		menu();
+		String inserir_database = "INSERT INTO colaboradores (nome, rg, cpf, cargo, endereco, data_nascimento, idade, data_cadastro, email) "
+				+ "						VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		
+		try {
+			Connection conexão = conectarDatabase();
+			PreparedStatement inserir = conexão.prepareStatement(inserir_database);
+			
+			inserir.setString(1, nome);
+			inserir.setString(2, rg);
+			inserir.setString(3, cpf);
+			inserir.setString(4, cargo);
+			inserir.setString(5, endereco);
+			inserir.setDate(6, (java.sql.Date) data_nascimento);
+			inserir.setInt(7, idade);
+			inserir.setDate(8,(java.sql.Date) data_cadastro);
+			inserir.setString(9, email);
+			
+			inserir.executeUpdate();
+			inserir.close();
+			
+			desconectarDatabase(conexão);
+			
+			System.out.println("\nColaborador cadastrado com sucesso.\n");
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.err.print("\nErro cadastrando o colaborador no banco de dados.\n");
+			
+			menu();
+		}
 	}
 	
-	static void deletarColaboradores() {
+	public static void deletarColaboradores() {
 		
 	}
 	
-	static void atualizarDados() {
+	public static void atualizarDados() {
 		
 	}
 }
