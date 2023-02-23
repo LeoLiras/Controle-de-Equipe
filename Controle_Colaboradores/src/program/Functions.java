@@ -1,5 +1,8 @@
 package program;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -39,6 +42,37 @@ public class Functions {
 			System.out.println("Opção inválida.");
 			Thread.sleep(3000);
 			menu();
+		}
+	}
+	
+	static Connection conectarDatabase() {
+		String CLASSE_DRIVER = "com.mysql.jdbc.Driver";
+		String USUARIO = "estudos";
+		String SENHA = "root123";
+		String URL_SERVIDOR = "jdbc:mysql://localhost:3306/colaboradores?useSSL=false";
+		
+		try {
+			Class.forName(CLASSE_DRIVER);
+			return DriverManager.getConnection(URL_SERVIDOR, USUARIO, SENHA);
+		}catch(Exception e) {
+			if (e instanceof ClassNotFoundException) {
+				System.out.println("\nVerifique o driver de conexão.\n");
+			}else {
+				System.out.println("\nVerifique se o servidor está ativo.\n");
+			}
+			System.exit(-1);
+			return null;
+		}
+	}
+	
+	public static void desconectarDatabase(Connection conexão) {
+		if(conexão != null) {
+			try {
+				conexão.close();
+			}catch(SQLException e) {
+				System.out.println("\nNão foi possível desconectar do banco de dados.\n");
+				e.printStackTrace();
+			}
 		}
 	}
 	
