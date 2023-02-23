@@ -103,6 +103,8 @@ public class Functions {
 		System.out.println("\nInsira a idade do Colaborador: ");
 		int idade = input.nextInt();
 		
+		
+		
 		Membros colaborador = new Membros(nome, rg, cpf, cargo, endereco, data_nascimento, email, idade);
 		
 		menu();
