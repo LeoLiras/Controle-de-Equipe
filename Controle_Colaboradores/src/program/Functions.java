@@ -240,6 +240,90 @@ public class Functions {
 	}
 	
 	public static void atualizarDados() {
+		input.nextLine();
+		System.out.println("\nInsira o ID do colaborador.\n");
+		int id = input.nextInt();
 		
+		String buscar = "SELECT * FROM colaboradores WHERE id=?";
+		
+		try {
+			Connection conexão = conectarDatabase();
+			PreparedStatement colaborador = conexão.prepareStatement(buscar, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			colaborador.setInt(1, id);
+			ResultSet resultado = colaborador.executeQuery();
+			
+			int linha_tabela;
+			resultado.last();
+			linha_tabela = resultado.getRow();
+			resultado.beforeFirst();
+			
+			if(linha_tabela > 0) {
+				System.out.println("\nDados do Colaborador:\n");
+				
+				while(resultado.next()) {
+					System.out.println("ID: " + resultado.getInt(1));
+					System.out.println("Nome: " + resultado.getString(2));
+					System.out.println("RG: " + resultado.getString(3));
+					System.out.println("CPF: " + resultado.getString(4));
+					System.out.println("Cargo: " + resultado.getString(5));
+					System.out.println("Endereço: " + resultado.getString(6));
+					System.out.println("Data de Nascimento: " + resultado.getDate(7));
+					System.out.println("Idade: " + resultado.getInt(8));
+					System.out.println("Data de Cadastro: " + resultado.getDate(9));
+					System.out.println("E-mail: " + resultado.getString(10));
+					System.out.println("---------------------------------------------------\n");
+				}
+				
+				System.out.println("\nQual dado deseja atualizar?\n");
+				System.out.println("[1] - Nome.");
+				System.out.println("[2] - RG.");
+				System.out.println("[3] - CPF.");
+				System.out.println("[4] - Cargo.");
+				System.out.println("[5] - Endereço.");
+				System.out.println("[6] - Data de Nascimento.");
+				System.out.println("[7] - Idade.");
+				System.out.println("[8] - E-mail.");
+				int opcao = input.nextInt();
+				
+				switch(opcao){
+				case 1:
+					atualizarNome();
+					break;
+				case 2:
+					atualizarRG();
+					break;
+				case 3:
+					atualizarCPF();
+					break;
+				case 4:
+					atualizarCargo();
+					break;
+				case 5:
+					atualizarEndereco();
+					break;
+				case 6:
+					atualizarDataNascimento();
+					break;
+				case 7:
+					atualizarIdade();
+					break;
+				case 8:
+					atualizarEmail();
+					break;
+				default:
+					System.out.println("\nOpção inválida.\n");
+					menu();
+				}
+				
+			}else {
+				System.err.println("\nNão há colaboradores cadastrados com esse ID.\n");
+				
+				menu();
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.err.println("\nNão foi possível atualizar dados do colaborador.\n");
+			System.exit(-1);
+		}
 	}
 }
