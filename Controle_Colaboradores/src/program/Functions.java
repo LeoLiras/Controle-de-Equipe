@@ -290,10 +290,10 @@ public class Functions {
 					atualizarNome();
 					break;
 				case 2:
-					atualizarRG();
+					atualizarRg();
 					break;
 				case 3:
-					atualizarCPF();
+					atualizarCpf();
 					break;
 				case 4:
 					atualizarCargo();
@@ -325,5 +325,37 @@ public class Functions {
 			System.err.println("\nNão foi possível atualizar dados do colaborador.\n");
 			System.exit(-1);
 		}
+	}
+	
+	public static void atualizarNome() {
+		
+	}
+	
+	public static void atualizarRg() {
+		
+	}
+	
+	public static void atualizarCpf() {
+		
+	}
+	
+	public static void atualizarCargo() {
+		
+	}
+	
+	public static void atualizarEndereco() {
+		
+	}
+	
+	public static void atualizarDataNascimento() {
+		
+	}
+	
+	public static void atualizarIdade() {
+		
+	}
+	
+	public static void atualizarEmail() {
+		
 	}
 }
