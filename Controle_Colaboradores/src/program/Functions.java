@@ -20,7 +20,7 @@ public class Functions {
 		System.out.println("\n========== Bem Vindo(a) =========");
 		System.out.println("========= Controle de Equipe =========\n");
 		System.out.println("Escolha uma opção: \n");
-		System.out.println("[1] - Listar colaborador cadastrado.");
+		System.out.println("[1] - Listar colaboradores cadastrados.");
 		System.out.println("[2] - Cadastrar novo colaborador.");
 		System.out.println("[3] - Deletar colaborador do sistema.");
 		System.out.println("[4] - Atualizar dados do colaborador.");
