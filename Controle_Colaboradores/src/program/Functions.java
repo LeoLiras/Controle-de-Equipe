@@ -3,6 +3,7 @@ package program;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -82,7 +83,49 @@ public class Functions {
 	}
 	
 	public static void listarColaboradores() {
+		String buscar = "SELECT * FROM colaboradores";
 		
+		try {
+			Connection conexão = conectarDatabase();
+			PreparedStatement colaboradores = conexão.prepareStatement(buscar, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			ResultSet resultado = colaboradores.executeQuery();
+			
+			int linhas_tabela;
+			
+			resultado.last();
+			linhas_tabela = resultado.getRow();
+			resultado.beforeFirst();
+			
+			if(linhas_tabela > 0) {
+				System.out.println("\n============= Colaboradores ============");
+				System.out.println("____________________________________________\n");
+				
+				while(resultado.next()) {
+					System.out.println("ID: " + resultado.getInt(1));
+					System.out.println("Nome: " + resultado.getString(2));
+					System.out.println("RG: " + resultado.getString(3));
+					System.out.println("CPF: " + resultado.getString(4));
+					System.out.println("Cargo: " + resultado.getString(5));
+					System.out.println("Endereço: " + resultado.getString(6));
+					System.out.println("Data de Nascimento: " + resultado.getDate(7));
+					System.out.println("Idade: " + resultado.getInt(8));
+					System.out.println("Data de Cadastro: " + resultado.getDate(9));
+					System.out.println("E-mail: " + resultado.getString(10));
+					System.out.println("---------------------------------------------------");
+					
+				}
+			}else {
+				System.out.println("\nAinda não há colaboradores cadastrados.\n");
+			}
+			
+			colaboradores.close();
+			desconectarDatabase(conexão);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.err.println("\nErro cadastrando o produto.\n");
+			System.exit(-1);
+		}
 	}
 	
 	public static void cadastrarColaboradores() throws InterruptedException, ParseException {
