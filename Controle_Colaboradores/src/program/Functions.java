@@ -198,6 +198,44 @@ public class Functions {
 	}
 	
 	public static void deletarColaboradores() {
+		String deletar = "DELETE FROM colaboradores WHERE id=?";
+		String buscar = "SELECT * FROM colaboradores WHERE id=?";
+		
+		System.out.println("Insira o ID do colaborador a ser deletado: ");
+		int id = input.nextInt();
+		
+		try {
+			Connection conexão = conectarDatabase();
+			PreparedStatement colaborador = conexão.prepareStatement(buscar, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			colaborador.setInt(1, id);
+			ResultSet resultado = colaborador.executeQuery();
+			
+			int linha_tabela;
+			resultado.last();
+			linha_tabela = resultado.getRow();
+			resultado.beforeFirst();
+			
+			if(linha_tabela > 0) {
+				PreparedStatement delet = conexão.prepareStatement(deletar, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+				delet.setInt(1, id);
+				delet.executeUpdate();
+				delet.close();
+				
+				desconectarDatabase(conexão);
+				
+				System.out.println("\nColaborador deletado com sucesso.\n");
+				
+				menu();
+			}else {
+				System.err.println("\nNão há colaboradores com o ID informado.\n");
+				
+				menu();
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("\nNão foi possível deletar o colaborador.\n");
+			System.exit(-1);
+		}
 		
 	}
 	
