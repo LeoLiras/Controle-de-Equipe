@@ -112,10 +112,12 @@ public class Functions {
 					System.out.println("Data de Cadastro: " + resultado.getDate(9));
 					System.out.println("E-mail: " + resultado.getString(10));
 					System.out.println("---------------------------------------------------");
-					
 				}
+				
+				menu();
 			}else {
 				System.out.println("\nAinda não há colaboradores cadastrados.\n");
+				menu();
 			}
 			
 			colaboradores.close();
