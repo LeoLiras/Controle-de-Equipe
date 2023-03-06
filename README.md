@@ -25,3 +25,25 @@ Neste caso utilizou-se a Eclipse IDE para o desenvolvimento do projeto.
 https://www.eclipse.org/downloads/
 
 _____________________________________________________________________________________________________________________________________________________________________
+
+# Preparação do Ambiente
+
+Após realizar uma conexão, basta criar um banco de dados e executar o seguinte código SQL para a criação da tabela utilizada no projeto.
+
+USE nome_do_seu_database;
+
+CREATE TABLE colaboradores (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  nome VARCHAR(100) NOT NULL,
+  rg VARCHAR(100) NOT NULL,
+  cpf VARCHAR(100) NOT NULL,
+  cargo VARCHAR(100) NOT NULL,
+  endereco  VARCHAR(100) NOT NULL,
+  data_nascimento DATE NOT NULL,
+  idade INT NOT NULL,
+  data_cadastro DATE NOT NULL,
+  email VARCHAR(100) NOT NULL
+);
+
+**Atenção:** O método conectarDatabase() deve ser preenchido corretamente com os dados do seu database, ou a conexão falhará.
+______________________________________________________________________________________________________________________________________________________________________
