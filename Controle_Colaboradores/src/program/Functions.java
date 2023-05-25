@@ -189,6 +189,8 @@ public class Functions {
 			desconectarDatabase(conexão);
 			
 			System.out.println("\nColaborador cadastrado com sucesso.\n");
+			
+			menu();
 		}catch(Exception e) {
 			e.printStackTrace();
 			System.err.print("\nErro cadastrando o colaborador no banco de dados.\n");
