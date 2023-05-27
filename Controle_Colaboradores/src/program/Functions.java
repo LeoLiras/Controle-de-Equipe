@@ -479,7 +479,7 @@ input.nextLine();
 		Date data_nascimento = data.parse(data_n);
 		java.sql.Date data_nasc = new java.sql.Date(data_nascimento.getTime());
 		
-		String update = "UPDATE colaboradores SET rg=? WHERE id=?";
+		String update = "UPDATE colaboradores SET data_nascimento=? WHERE id=?";
 		
 		try {
 			Connection conexão = conectarDatabase();
