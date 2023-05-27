@@ -507,7 +507,7 @@ input.nextLine();
 		System.out.println("\nInforme a nova idade do Colaborador: \n");
 		int idade = input.nextInt();
 		
-		String update = "UPDATE colaboradores SET rg=? WHERE id=?";
+		String update = "UPDATE colaboradores SET idade=? WHERE id=?";
 		
 		try {
 			Connection conexão = conectarDatabase();
