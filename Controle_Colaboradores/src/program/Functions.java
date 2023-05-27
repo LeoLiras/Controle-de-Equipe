@@ -292,25 +292,25 @@ public class Functions {
 					atualizarNome(id);
 					break;
 				case 2:
-					atualizarRg();
+					atualizarRg(id);
 					break;
 				case 3:
-					atualizarCpf();
+					atualizarCpf(id);
 					break;
 				case 4:
-					atualizarCargo();
+					atualizarCargo(id);
 					break;
 				case 5:
-					atualizarEndereco();
+					atualizarEndereco(id);
 					break;
 				case 6:
-					atualizarDataNascimento();
+					atualizarDataNascimento(id);
 					break;
 				case 7:
-					atualizarIdade();
+					atualizarIdade(id);
 					break;
 				case 8:
-					atualizarEmail();
+					atualizarEmail(id);
 					break;
 				default:
 					System.out.println("\nOpção inválida.\n");
@@ -357,31 +357,31 @@ public class Functions {
 		}
 	}
 	
-	public static void atualizarRg() {
+	public static void atualizarRg(int id) {
 		
 	}
 	
-	public static void atualizarCpf() {
+	public static void atualizarCpf(int id) {
 		
 	}
 	
-	public static void atualizarCargo() {
+	public static void atualizarCargo(int id) {
 		
 	}
 	
-	public static void atualizarEndereco() {
+	public static void atualizarEndereco(int id) {
 		
 	}
 	
-	public static void atualizarDataNascimento() {
+	public static void atualizarDataNascimento(int id) {
 		
 	}
 	
-	public static void atualizarIdade() {
+	public static void atualizarIdade(int id) {
 		
 	}
 	
-	public static void atualizarEmail() {
+	public static void atualizarEmail(int id) {
 		
 	}
 }
