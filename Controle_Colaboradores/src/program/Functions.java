@@ -358,30 +358,202 @@ public class Functions {
 	}
 	
 	public static void atualizarRg(int id) {
+		input.nextLine();
 		
+		System.out.println("\nInforme o novo RG do Colaborador: \n");
+		String rg = input.nextLine();
+		
+		String update = "UPDATE colaboradores SET rg=? WHERE id=?";
+		
+		try {
+			Connection conexão = conectarDatabase();
+			PreparedStatement upd = conexão.prepareStatement(update);
+			
+			upd.setString(1, rg);
+			upd.setInt(2, id);
+			
+			upd.executeUpdate();
+			upd.close();
+			
+			System.out.println("\nRG do colaborador atualizado com sucesso.\n");
+			
+			menu();
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.err.println("Não foi possível realizar a atualização");
+			System.exit(-1);
+		}
 	}
 	
 	public static void atualizarCpf(int id) {
+		input.nextLine();
 		
+		System.out.println("\nInforme o novo CPF do Colaborador: \n");
+		String cpf = input.nextLine();
+		
+		String update = "UPDATE colaboradores SET cpf=? WHERE id=?";
+		
+		try {
+			Connection conexão = conectarDatabase();
+			PreparedStatement upd = conexão.prepareStatement(update);
+			
+			upd.setString(1, cpf);
+			upd.setInt(2, id);
+			
+			upd.executeUpdate();
+			upd.close();
+			
+			System.out.println("\nCPF do colaborador atualizado com sucesso.\n");
+			
+			menu();
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.err.println("Não foi possível realizar a atualização");
+			System.exit(-1);
+		}
 	}
 	
 	public static void atualizarCargo(int id) {
+input.nextLine();
 		
+		System.out.println("\nInforme o novo cargo do Colaborador: \n");
+		String cargo = input.nextLine();
+		
+		String update = "UPDATE colaboradores SET cargo=? WHERE id=?";
+		
+		try {
+			Connection conexão = conectarDatabase();
+			PreparedStatement upd = conexão.prepareStatement(update);
+			
+			upd.setString(1, cargo);
+			upd.setInt(2, id);
+			
+			upd.executeUpdate();
+			upd.close();
+			
+			System.out.println("\nCargo do colaborador atualizado com sucesso.\n");
+			
+			menu();
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.err.println("Não foi possível realizar a atualização");
+			System.exit(-1);
+		}
 	}
 	
 	public static void atualizarEndereco(int id) {
+		input.nextLine();
 		
+		System.out.println("\nInforme o novo endereço do Colaborador: \n");
+		String endereco = input.nextLine();
+		
+		String update = "UPDATE colaboradores SET endereco=? WHERE id=?";
+		
+		try {
+			Connection conexão = conectarDatabase();
+			PreparedStatement upd = conexão.prepareStatement(update);
+			
+			upd.setString(1, endereco);
+			upd.setInt(2, id);
+			
+			upd.executeUpdate();
+			upd.close();
+			
+			System.out.println("\nEndereço do colaborador atualizado com sucesso.\n");
+			
+			menu();
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.err.println("Não foi possível realizar a atualização");
+			System.exit(-1);
+		}
 	}
 	
-	public static void atualizarDataNascimento(int id) {
+	public static void atualizarDataNascimento(int id) throws ParseException {
+		input.nextLine();
 		
+		System.out.println("\nInsira a nova data de nascimento do Colaborador: ");
+		String data_n = input.nextLine();
+		
+		DateFormat data = new SimpleDateFormat("dd/MM/yyyy");
+		Date data_nascimento = data.parse(data_n);
+		java.sql.Date data_nasc = new java.sql.Date(data_nascimento.getTime());
+		
+		String update = "UPDATE colaboradores SET rg=? WHERE id=?";
+		
+		try {
+			Connection conexão = conectarDatabase();
+			PreparedStatement upd = conexão.prepareStatement(update);
+			
+			upd.setDate(1, data_nasc);
+			upd.setInt(2, id);
+			
+			upd.executeUpdate();
+			upd.close();
+			
+			System.out.println("\nData de nascimento do colaborador atualizado com sucesso.\n");
+			
+			menu();
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.err.println("Não foi possível realizar a atualização");
+			System.exit(-1);
+		}
 	}
 	
 	public static void atualizarIdade(int id) {
+		input.nextLine();
 		
+		System.out.println("\nInforme a nova idade do Colaborador: \n");
+		int idade = input.nextInt();
+		
+		String update = "UPDATE colaboradores SET rg=? WHERE id=?";
+		
+		try {
+			Connection conexão = conectarDatabase();
+			PreparedStatement upd = conexão.prepareStatement(update);
+			
+			upd.setInt(1, idade);
+			upd.setInt(2, id);
+			
+			upd.executeUpdate();
+			upd.close();
+			
+			System.out.println("\nIdade do colaborador atualizado com sucesso.\n");
+			
+			menu();
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.err.println("Não foi possível realizar a atualização");
+			System.exit(-1);
+		}
 	}
 	
 	public static void atualizarEmail(int id) {
+		input.nextLine();
 		
+		System.out.println("\nInforme o e-mail endereço do Colaborador: \n");
+		String email = input.nextLine();
+		
+		String update = "UPDATE colaboradores SET email=? WHERE id=?";
+		
+		try {
+			Connection conexão = conectarDatabase();
+			PreparedStatement upd = conexão.prepareStatement(update);
+			
+			upd.setString(1, email);
+			upd.setInt(2, id);
+			
+			upd.executeUpdate();
+			upd.close();
+			
+			System.out.println("\nE-mail do colaborador atualizado com sucesso.\n");
+			
+			menu();
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.err.println("Não foi possível realizar a atualização");
+			System.exit(-1);
+		}
 	}
 }
