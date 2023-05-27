@@ -287,6 +287,8 @@ public class Functions {
 				System.out.println("[8] - E-mail.");
 				int opcao = input.nextInt();
 				
+				desconectarDatabase(conexão);
+				
 				switch(opcao){
 				case 1:
 					atualizarNome(id);
@@ -349,6 +351,7 @@ public class Functions {
 			
 			System.out.println("\nNome do colaborador atualizado com sucesso.\n");
 			
+			desconectarDatabase(conexão);
 			menu();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -377,6 +380,7 @@ public class Functions {
 			
 			System.out.println("\nRG do colaborador atualizado com sucesso.\n");
 			
+			desconectarDatabase(conexão);
 			menu();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -405,6 +409,7 @@ public class Functions {
 			
 			System.out.println("\nCPF do colaborador atualizado com sucesso.\n");
 			
+			desconectarDatabase(conexão);
 			menu();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -433,6 +438,7 @@ input.nextLine();
 			
 			System.out.println("\nCargo do colaborador atualizado com sucesso.\n");
 			
+			desconectarDatabase(conexão);
 			menu();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -461,6 +467,7 @@ input.nextLine();
 			
 			System.out.println("\nEndereço do colaborador atualizado com sucesso.\n");
 			
+			desconectarDatabase(conexão);
 			menu();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -493,6 +500,7 @@ input.nextLine();
 			
 			System.out.println("\nData de nascimento do colaborador atualizado com sucesso.\n");
 			
+			desconectarDatabase(conexão);
 			menu();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -521,6 +529,7 @@ input.nextLine();
 			
 			System.out.println("\nIdade do colaborador atualizado com sucesso.\n");
 			
+			desconectarDatabase(conexão);
 			menu();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -549,6 +558,7 @@ input.nextLine();
 			
 			System.out.println("\nE-mail do colaborador atualizado com sucesso.\n");
 			
+			desconectarDatabase(conexão);
 			menu();
 		}catch(Exception e) {
 			e.printStackTrace();
