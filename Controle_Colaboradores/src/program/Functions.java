@@ -289,7 +289,7 @@ public class Functions {
 				
 				switch(opcao){
 				case 1:
-					atualizarNome();
+					atualizarNome(id);
 					break;
 				case 2:
 					atualizarRg();
@@ -329,8 +329,32 @@ public class Functions {
 		}
 	}
 	
-	public static void atualizarNome() {
+	public static void atualizarNome(int id) {
+		input.nextLine();
 		
+		System.out.println("\nInforme o novo nome do Colaborador: \n");
+		String nome = input.nextLine();
+		
+		String update = "UPDATE colaboradores SET nome=? WHERE id=?";
+		
+		try {
+			Connection conexão = conectarDatabase();
+			PreparedStatement upd = conexão.prepareStatement(update);
+			
+			upd.setString(1, nome);
+			upd.setInt(2, id);
+			
+			upd.executeUpdate();
+			upd.close();
+			
+			System.out.println("\nNome do colaborador atualizado com sucesso.\n");
+			
+			menu();
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.err.println("Não foi possível realizar a atualização");
+			System.exit(-1);
+		}
 	}
 	
 	public static void atualizarRg() {
