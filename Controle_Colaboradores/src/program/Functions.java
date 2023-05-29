@@ -21,10 +21,10 @@ public class Functions {
 		System.out.println("========= Controle de Equipe =========\n");
 		System.out.println("Escolha uma opção: \n");
 		System.out.println("[1] - Listar colaboradores cadastrados.");
-		System.out.println("[2] - Cadastrar novo colaborador.");
-		System.out.println("[3] - Deletar colaborador do sistema.");
-		System.out.println("[4] - Atualizar dados do colaborador.");
-		System.out.println("[5] - Buscar Colaborador");
+		System.out.println("[2] - Buscar Colaborador");
+		System.out.println("[3] - Cadastrar novo colaborador.");
+		System.out.println("[4] - Deletar colaborador do sistema.");
+		System.out.println("[5] - Atualizar dados do colaborador.");
 		System.out.println("[6] - Sair.");
 		
 		int opt = input.nextInt();
@@ -34,16 +34,17 @@ public class Functions {
 			listarColaboradores();
 			break;
 		case 2:
-			cadastrarColaboradores();
+			menuBuscarColaborador();
 			break;
 		case 3:
-			deletarColaboradores();
+			cadastrarColaboradores();
 			break;
 		case 4:
-			atualizarDados();
+			deletarColaboradores();
 			break;
 		case 5:
-			menuBuscarColaborador();
+			atualizarDados();
+			break;
 		case 6:
 			System.exit(0);
 		default:
