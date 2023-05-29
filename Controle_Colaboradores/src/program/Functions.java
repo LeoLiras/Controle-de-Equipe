@@ -644,7 +644,7 @@ input.nextLine();
 	}
 	
 	public static void buscarRg() {
-		System.out.println("\nInsira o RG do colaborador(somente números): ");
+		System.out.println("\nInsira o RG do colaborador(somente números e dígito, se houver): ");
 		int rg = input.nextInt();
 		
 		String buscar = "SELECT * FROM colaboradores WHERE rg=" + rg;
@@ -693,6 +693,52 @@ input.nextLine();
 	}
 	
 	public static void buscarNome() {
+		input.nextLine();
+		System.out.println("\nInsira o nome completo do colaborador: ");
+		String nome = input.nextLine();
 		
+		String buscar = "SELECT * FROM colaboradores WHERE nome='" + nome + "'";
+		 
+		try {
+			Connection conexão = conectarDatabase();
+			PreparedStatement colaboradores = conexão.prepareStatement(buscar, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			ResultSet resultado = colaboradores.executeQuery();
+			
+			int linhas_tabela;
+			
+			resultado.last();
+			linhas_tabela = resultado.getRow();
+			resultado.beforeFirst();
+			
+			if(linhas_tabela > 0) {
+				System.out.println("____________________________________________\n");
+				
+				while(resultado.next()) {
+					System.out.println("ID: " + resultado.getInt(1));
+					System.out.println("Nome: " + resultado.getString(2));
+					System.out.println("RG: " + resultado.getString(3));
+					System.out.println("CPF: " + resultado.getString(4));
+					System.out.println("Cargo: " + resultado.getString(5));
+					System.out.println("Endereço: " + resultado.getString(6));
+					System.out.println("Data de Nascimento: " + resultado.getDate(7));
+					System.out.println("Idade: " + resultado.getInt(8));
+					System.out.println("Data de Cadastro: " + resultado.getDate(9));
+					System.out.println("E-mail: " + resultado.getString(10));
+					System.out.println("---------------------------------------------------");
+				}
+				
+				menu();
+			}else {
+				System.out.println("\nNão há colaboradores com o nome informado.\n");
+				menu();
+			}
+			
+			colaboradores.close();
+			desconectarDatabase(conexão);
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.err.println("\nErro buscando o colaborador.\n");
+			System.exit(-1);
+		}
 	}
 }
