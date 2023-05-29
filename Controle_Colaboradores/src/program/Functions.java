@@ -24,7 +24,7 @@ public class Functions {
 		System.out.println("[2] - Cadastrar novo colaborador.");
 		System.out.println("[3] - Deletar colaborador do sistema.");
 		System.out.println("[4] - Atualizar dados do colaborador.");
-		System.out.println("[5] - Sair.");
+		System.out.println("[6] - Sair.");
 		
 		int opt = input.nextInt();
 		
@@ -42,6 +42,8 @@ public class Functions {
 			atualizarDados();
 			break;
 		case 5:
+			menuBuscarColaborador();
+		case 6:
 			System.exit(0);
 		default:
 			System.out.println("Opção inválida.");
@@ -565,5 +567,40 @@ input.nextLine();
 			System.err.println("Não foi possível realizar a atualização");
 			System.exit(-1);
 		}
+	}
+	
+	public static void menuBuscarColaborador() throws InterruptedException, ParseException {
+		System.out.println("\nEscolha uma opção:\n");
+		System.out.println("[1] - CPF");
+		System.out.println("[2] - RG");
+		System.out.println("[3] - Nome");
+		int opt = input.nextInt();
+		
+		switch(opt) {
+		case 1:
+			buscarCpf();
+			break;
+		case 2:
+			buscarRg();
+			break;
+		case 3:
+			buscarNome();
+			break;
+		default:
+			System.out.println("\nOpção inválida.\n");
+			menu();
+		}
+	}
+	
+	public static void buscarCpf() {
+		
+	}
+	
+	public static void buscarRg() {
+		
+	}
+	
+	public static void buscarNome() {
+		
 	}
 }
