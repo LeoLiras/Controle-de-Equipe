@@ -24,6 +24,7 @@ public class Functions {
 		System.out.println("[2] - Cadastrar novo colaborador.");
 		System.out.println("[3] - Deletar colaborador do sistema.");
 		System.out.println("[4] - Atualizar dados do colaborador.");
+		System.out.println("[5] - Buscar Colaborador");
 		System.out.println("[6] - Sair.");
 		
 		int opt = input.nextInt();
@@ -593,6 +594,52 @@ input.nextLine();
 	}
 	
 	public static void buscarCpf() {
+		System.out.println("\nInsira o CPF do colaborador(somente números): ");
+		int cpf = input.nextInt();
+		
+		String buscar = "SELECT * FROM colaboradores WHERE cpf=" + cpf;
+		 
+		try {
+			Connection conexão = conectarDatabase();
+			PreparedStatement colaboradores = conexão.prepareStatement(buscar, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			ResultSet resultado = colaboradores.executeQuery();
+			
+			int linhas_tabela;
+			
+			resultado.last();
+			linhas_tabela = resultado.getRow();
+			resultado.beforeFirst();
+			
+			if(linhas_tabela > 0) {
+				System.out.println("____________________________________________\n");
+				
+				while(resultado.next()) {
+					System.out.println("ID: " + resultado.getInt(1));
+					System.out.println("Nome: " + resultado.getString(2));
+					System.out.println("RG: " + resultado.getString(3));
+					System.out.println("CPF: " + resultado.getString(4));
+					System.out.println("Cargo: " + resultado.getString(5));
+					System.out.println("Endereço: " + resultado.getString(6));
+					System.out.println("Data de Nascimento: " + resultado.getDate(7));
+					System.out.println("Idade: " + resultado.getInt(8));
+					System.out.println("Data de Cadastro: " + resultado.getDate(9));
+					System.out.println("E-mail: " + resultado.getString(10));
+					System.out.println("---------------------------------------------------");
+				}
+				
+				menu();
+			}else {
+				System.out.println("\nNão há colaboradores com o CPF informado.\n");
+				menu();
+			}
+			
+			colaboradores.close();
+			desconectarDatabase(conexão);
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.err.println("\nErro buscando o colaborador.\n");
+			System.exit(-1);
+		}
 		
 	}
 	
