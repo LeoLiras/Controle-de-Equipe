@@ -117,9 +117,11 @@ public class Functions {
 					System.out.println("---------------------------------------------------");
 				}
 				
+				Thread.sleep(2000);
 				menu();
 			}else {
 				System.out.println("\nAinda não há colaboradores cadastrados.\n");
+				Thread.sleep(2000);
 				menu();
 			}
 			
@@ -192,13 +194,12 @@ public class Functions {
 			desconectarDatabase(conexão);
 			
 			System.out.println("\nColaborador cadastrado com sucesso.\n");
-			
+			Thread.sleep(2000);
 			menu();
 		}catch(Exception e) {
 			e.printStackTrace();
 			System.err.print("\nErro cadastrando o colaborador no banco de dados.\n");
-			
-			menu();
+			System.exit(-1);
 		}
 	}
 	
@@ -229,11 +230,11 @@ public class Functions {
 				desconectarDatabase(conexão);
 				
 				System.out.println("\nColaborador deletado com sucesso.\n");
-				
+				Thread.sleep(2000);
 				menu();
 			}else {
 				System.err.println("\nNão há colaboradores com o ID informado.\n");
-				
+				Thread.sleep(2000);
 				menu();
 			}
 		}catch(Exception e) {
@@ -319,12 +320,13 @@ public class Functions {
 					break;
 				default:
 					System.out.println("\nOpção inválida.\n");
+					Thread.sleep(3000);
 					menu();
 				}
 				
 			}else {
 				System.err.println("\nNão há colaboradores cadastrados com esse ID.\n");
-				
+				Thread.sleep(2000);
 				menu();
 			}
 		}catch(Exception e) {
@@ -355,6 +357,7 @@ public class Functions {
 			System.out.println("\nNome do colaborador atualizado com sucesso.\n");
 			
 			desconectarDatabase(conexão);
+			Thread.sleep(2000);
 			menu();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -384,6 +387,7 @@ public class Functions {
 			System.out.println("\nRG do colaborador atualizado com sucesso.\n");
 			
 			desconectarDatabase(conexão);
+			Thread.sleep(2000);
 			menu();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -413,6 +417,7 @@ public class Functions {
 			System.out.println("\nCPF do colaborador atualizado com sucesso.\n");
 			
 			desconectarDatabase(conexão);
+			Thread.sleep(2000);
 			menu();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -422,7 +427,7 @@ public class Functions {
 	}
 	
 	public static void atualizarCargo(int id) {
-input.nextLine();
+		input.nextLine();
 		
 		System.out.println("\nInforme o novo cargo do Colaborador: \n");
 		String cargo = input.nextLine();
@@ -442,6 +447,7 @@ input.nextLine();
 			System.out.println("\nCargo do colaborador atualizado com sucesso.\n");
 			
 			desconectarDatabase(conexão);
+			Thread.sleep(2000);
 			menu();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -471,6 +477,7 @@ input.nextLine();
 			System.out.println("\nEndereço do colaborador atualizado com sucesso.\n");
 			
 			desconectarDatabase(conexão);
+			Thread.sleep(2000);
 			menu();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -504,6 +511,7 @@ input.nextLine();
 			System.out.println("\nData de nascimento do colaborador atualizado com sucesso.\n");
 			
 			desconectarDatabase(conexão);
+			Thread.sleep(2000);
 			menu();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -533,6 +541,7 @@ input.nextLine();
 			System.out.println("\nIdade do colaborador atualizado com sucesso.\n");
 			
 			desconectarDatabase(conexão);
+			Thread.sleep(2000);
 			menu();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -562,6 +571,7 @@ input.nextLine();
 			System.out.println("\nE-mail do colaborador atualizado com sucesso.\n");
 			
 			desconectarDatabase(conexão);
+			Thread.sleep(2000);
 			menu();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -589,6 +599,7 @@ input.nextLine();
 			break;
 		default:
 			System.out.println("\nOpção inválida.\n");
+			Thread.sleep(3000);
 			menu();
 		}
 	}
@@ -626,8 +637,6 @@ input.nextLine();
 					System.out.println("E-mail: " + resultado.getString(10));
 					System.out.println("---------------------------------------------------");
 				}
-				
-				menu();
 			}else {
 				System.out.println("\nNão há colaboradores com o CPF informado.\n");
 				menu();
@@ -635,6 +644,8 @@ input.nextLine();
 			
 			colaboradores.close();
 			desconectarDatabase(conexão);
+			Thread.sleep(2000);
+			menu();
 		}catch(Exception e) {
 			e.printStackTrace();
 			System.err.println("\nErro buscando o colaborador.\n");
@@ -676,8 +687,6 @@ input.nextLine();
 					System.out.println("E-mail: " + resultado.getString(10));
 					System.out.println("---------------------------------------------------");
 				}
-				
-				menu();
 			}else {
 				System.out.println("\nNão há colaboradores com o RG informado.\n");
 				menu();
@@ -685,6 +694,8 @@ input.nextLine();
 			
 			colaboradores.close();
 			desconectarDatabase(conexão);
+			Thread.sleep(2000);
+			menu();
 		}catch(Exception e) {
 			e.printStackTrace();
 			System.err.println("\nErro buscando o colaborador.\n");
@@ -726,8 +737,6 @@ input.nextLine();
 					System.out.println("E-mail: " + resultado.getString(10));
 					System.out.println("---------------------------------------------------");
 				}
-				
-				menu();
 			}else {
 				System.out.println("\nNão há colaboradores com o nome informado.\n");
 				menu();
@@ -735,6 +744,8 @@ input.nextLine();
 			
 			colaboradores.close();
 			desconectarDatabase(conexão);
+			Thread.sleep(2000);
+			menu();
 		}catch(Exception e) {
 			e.printStackTrace();
 			System.err.println("\nErro buscando o colaborador.\n");
